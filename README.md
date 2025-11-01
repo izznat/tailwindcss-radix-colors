@@ -23,7 +23,7 @@ If you want automatic dark theme colors. Make sure
 to add "dark" or "dark-theme" class to the root element,
 e.g. <html class="dark">.
 */
-@import "@radix-ui/colors/mauveDark.css";
+@import "@radix-ui/colors/mauve-dark.css";
 /*
 This package theme variables will reference
 the CSS variables from @radix-ui/colors package.

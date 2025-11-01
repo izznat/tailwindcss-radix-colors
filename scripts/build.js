@@ -44,8 +44,10 @@ function generateStylesheet(name, scales) {
     let scalesThemeVariables = "";
 
     for (const scale in scales) {
+        const canonicalScale = canonicalizeScale(scale);
+
         scalesThemeVariables += TAB;
-        scalesThemeVariables += `--color-${scale}: var(--${scale});`;
+        scalesThemeVariables += `--color-${canonicalScale}: var(--${canonicalScale});`;
         scalesThemeVariables += NEWLINE;
     }
 
@@ -70,8 +72,22 @@ function generateStylesheet(name, scales) {
  * @param {string} name
  * @returns {string}
  */
-function eraseP3(name) {
-    return name.replace("P3", "");
+function canonicalizeName(name) {
+    name = name.replace("P3", "");
+
+    if (name.endsWith("A")) {
+        name = name.replace("A", "-alpha");
+    }
+
+    return name;
+}
+
+/**
+ * @param {string} scale
+ * @returns {string}
+ */
+function canonicalizeScale(scale) {
+    return scale.replace("A", "-a");
 }
 
 for (const [name, scales] of Object.entries(colors)) {
@@ -79,5 +95,5 @@ for (const [name, scales] of Object.entries(colors)) {
         continue;
     }
 
-    generateStylesheet(eraseP3(name), scales);
+    generateStylesheet(canonicalizeName(name), scales);
 }
