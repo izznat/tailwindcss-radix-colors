@@ -87,7 +87,14 @@ function canonicalizeName(name) {
  * @returns {string}
  */
 function canonicalizeScale(scale) {
-    return scale.replace("A", "-a");
+    if (scale.includes("A")) {
+        scale = scale.replace("A", "-a");
+    } else {
+        const [scaleNumber] = scale.match(/\d{1,2}$/);
+        scale = scale.replace(scaleNumber, `-${scaleNumber}`);
+    }
+
+    return scale;
 }
 
 for (const [name, scales] of Object.entries(colors)) {
