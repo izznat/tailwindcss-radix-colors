@@ -1,0 +1,21 @@
+{
+    "name": "@izznatsir/tailwindcss-radix-colors",
+    "version": "0.1.1",
+    "description": "Use Radix Colors as Tailwind CSS theme variables.",
+    "files": [
+        "*.css"
+    ],
+    "type": "module",
+    "scripts": {
+        "build": "node scripts/build.js",
+        "clean": "node scripts/clean.js",
+        "prepublish": "pnpm build",
+        "postpublish": "pnpm clean"
+    },
+    "devDependencies": {
+        "@radix-ui/colors": "^3.0.0"
+    },
+    "peerDependencies": {
+        "@radix-ui/colors": "^3.0.0"
+    }
+}
